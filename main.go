@@ -21,11 +21,17 @@ func main() {
 	// 	fmt.Println(result)
 	// }
 
-	person := Person{
-		Name: "Phat",
-		Age: 26,
-	}
-	fmt.Println(person.Name)
+	// person := Person{
+	// 	Name: "Phat",
+	// 	Age: 26,
+	// }
+	// fmt.Println(person.Name)
+
+	i := 1
+	inc(i)
+	fmt.Println(i)
+	incWithPointer(&i)
+	fmt.Println(i)
 }
 
 func helloWorld() {
@@ -102,4 +108,12 @@ func sqrt(x float64) (float64, error) {
 type Person struct {
 	Name string
 	Age int
+}
+
+func inc(x int) {
+	x++
+}
+
+func incWithPointer(x *int) {
+	*x++
 }
