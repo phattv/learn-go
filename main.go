@@ -14,12 +14,18 @@ func main() {
 	// maps()
 	// loops()
 	// ranges()
-	result, err := sqrt(-64)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(result)
+	// result, err := sqrt(-64)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// } else {
+	// 	fmt.Println(result)
+	// }
+
+	person := Person{
+		Name: "Phat",
+		Age: 26,
 	}
+	fmt.Println(person.Name)
 }
 
 func helloWorld() {
@@ -91,4 +97,9 @@ func sqrt(x float64) (float64, error) {
 	}
 
 	return math.Sqrt(x), nil
+}
+
+type Person struct {
+	Name string
+	Age int
 }
