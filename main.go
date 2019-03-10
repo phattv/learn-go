@@ -10,7 +10,8 @@ func main() {
 	// array()
 	// slice()
 	// maps()
-	loops()
+	// loops()
+	ranges()
 }
 
 func helloWorld() {
@@ -54,5 +55,24 @@ func loops() {
 	for j < 5 {
 		fmt.Println(j)
 		j++
+	}
+}
+
+func ranges() {
+	// slice
+	arr := []string{"one", "two", "three"}
+
+	for index, value := range arr {
+		fmt.Println("index: ", index, "value: ", value)
+	}
+
+	// map
+	map1 := make(map[string]string)
+	map1["one"] = "first"
+	map1["two"] = "second"
+	map1["three"] = "third"
+
+	for key, value := range map1 {
+		fmt.Println("key: ", key, "value: ", value)
 	}
 }
