@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"errors"
 )
 
 func main() {
@@ -11,7 +13,13 @@ func main() {
 	// slice()
 	// maps()
 	// loops()
-	ranges()
+	// ranges()
+	result, err := sqrt(-64)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(result)
+	}
 }
 
 func helloWorld() {
@@ -75,4 +83,12 @@ func ranges() {
 	for key, value := range map1 {
 		fmt.Println("key: ", key, "value: ", value)
 	}
+}
+
+func sqrt(x float64) (float64, error) {
+	if x < 0 {
+		return 0, errors.New("Undefined for negative numbers")
+	}
+
+	return math.Sqrt(x), nil
 }
