@@ -9,7 +9,8 @@ func main() {
 	// sum(3, 4)
 	// array()
 	// slice()
-	maps()
+	// maps()
+	loops()
 }
 
 func helloWorld() {
@@ -25,7 +26,7 @@ func array() {
 	a := [5]int{5, 4, 3, 2, 1}
 	fmt.Println(a)
 	a[2] = 22
-	fmt.Print(a)
+	fmt.Println(a)
 }
 
 func slice() {
@@ -41,4 +42,17 @@ func maps() {
 	fmt.Println(m)
 	delete(m, "square")
 	fmt.Println(m)
+}
+
+func loops() {
+	for i := 0; i < 5; i++ {
+		fmt.Println(i)
+	}
+
+	// while loop
+	j := 0
+	for j < 5 {
+		fmt.Println(j)
+		j++
+	}
 }
