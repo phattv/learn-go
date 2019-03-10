@@ -7,7 +7,8 @@ import (
 func main() {
 	// helloWorld()
 	// sum(3, 4)
-	array()
+	// array()
+	slice()
 }
 
 func helloWorld() {
@@ -24,4 +25,9 @@ func array() {
 	fmt.Println(a)
 	a[2] = 22
 	fmt.Print(a)
+}
+
+func slice() {
+	s := []string{"yo", "yay"}
+	fmt.Println(s)
 }
