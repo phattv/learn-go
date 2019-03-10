@@ -8,7 +8,8 @@ func main() {
 	// helloWorld()
 	// sum(3, 4)
 	// array()
-	slice()
+	// slice()
+	maps()
 }
 
 func helloWorld() {
@@ -30,4 +31,14 @@ func array() {
 func slice() {
 	s := []string{"yo", "yay"}
 	fmt.Println(s)
+}
+
+func maps() {
+	m := make(map[string]int)
+	m["triange"] = 2
+	m["square"] = 3
+	m["circle"] = 4
+	fmt.Println(m)
+	delete(m, "square")
+	fmt.Println(m)
 }
