@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"errors"
+	"net/http"
 )
 
 func main() {
@@ -27,11 +28,13 @@ func main() {
 	// }
 	// fmt.Println(person.Name)
 
-	i := 1
-	inc(i)
-	fmt.Println(i)
-	incWithPointer(&i)
-	fmt.Println(i)
+	// i := 1
+	// inc(i)
+	// fmt.Println(i)
+	// incWithPointer(&i)
+	// fmt.Println(i)
+	
+	RegisterRoutes()
 }
 
 func helloWorld() {
@@ -116,4 +119,21 @@ func inc(x int) {
 
 func incWithPointer(x *int) {
 	*x++
+}
+
+func RegisterRoutes() {
+	http.HandleFunc("/", hi)
+	http.HandleFunc("/ping", ping)
+
+	port := ":8080"
+	fmt.Println("Server is listening at localhost" + port)
+	http.ListenAndServe(port, nil)
+}
+
+func hi(writer http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(writer, "Hello, World!")
+}
+
+func ping(writer http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(writer, "pong")
 }
