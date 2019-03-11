@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"math"
-	"time"
 )
 
 // Learning go from the basics, uncomment line by line
@@ -35,15 +34,21 @@ func main() {
 	// incWithPointer(&i)
 	// fmt.Println(i)
 
-	goRoutine()
+	// safeDivision(3, 0)
+	// safeDivision(3, 3)
 
-	stringChannel := make(chan string)
-	for i := 0; i < 3; i++ {
-		go makeDough(stringChannel)
-		go addSauce(stringChannel)
-		go addTopping(stringChannel)
-		time.Sleep(time.Millisecond * 5000)
-	}
+	// panicDevision(3, 3)
+	// panicDevision(3, 0)
+
+	// goRoutine()
+
+	// stringChannel := make(chan string)
+	// for i := 0; i < 3; i++ {
+	// 	go makeDough(stringChannel)
+	// 	go addSauce(stringChannel)
+	// 	go addTopping(stringChannel)
+	// 	time.Sleep(time.Millisecond * 5000)
+	// }
 
 	registerRoutes()
 }
