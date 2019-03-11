@@ -1,14 +1,13 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
-	"errors"
-	"net/http"
 	"time"
-	"strconv"
 )
 
+// Learning go from the basics, uncomment line by line
 func main() {
 	// helloWorld()
 	// sum(3, 4)
@@ -35,17 +34,18 @@ func main() {
 	// fmt.Println(i)
 	// incWithPointer(&i)
 	// fmt.Println(i)
-	
-	// RegisterRoutes()
-	// goRoutine()
+
+	goRoutine()
 
 	stringChannel := make(chan string)
-	for i:= 0; i  < 3; i ++ {
+	for i := 0; i < 3; i++ {
 		go makeDough(stringChannel)
 		go addSauce(stringChannel)
 		go addTopping(stringChannel)
 		time.Sleep(time.Millisecond * 5000)
 	}
+
+	registerRoutes()
 }
 
 func helloWorld() {
@@ -121,7 +121,7 @@ func sqrt(x float64) (float64, error) {
 
 type Person struct {
 	Name string
-	Age int
+	Age  int
 }
 
 func inc(x int) {
@@ -130,60 +130,4 @@ func inc(x int) {
 
 func incWithPointer(x *int) {
 	*x++
-}
-
-func RegisterRoutes() {
-	http.HandleFunc("/", hi)
-	http.HandleFunc("/ping", ping)
-
-	port := ":8080"
-	fmt.Println("Server is listening at localhost" + port)
-	http.ListenAndServe(port, nil)
-}
-
-func hi(writer http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(writer, "Hello, World!")
-}
-
-func ping(writer http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(writer, "pong")
-}
-
-func goRoutine() {
-	for i := 0; i < 10; i++ {
-		go count(i)
-	}
-
-	time.Sleep(time.Millisecond * 11000)
-}
-
-func count(id int) {
-	for i := 0; i < 10; i++ {
-		fmt.Println(fmt.Sprintf("%v: %v", id, i))
-		time.Sleep(time.Millisecond * 1000)
-	}
-}
-
-var pizzaNum = 0
-var pizzaName = ""
-
-func makeDough(stringChan chan string) {
-	pizzaNum++
-	pizzaName = "Pizza #" + strconv.Itoa(pizzaNum)
-	fmt.Println("Make dough for", pizzaName, "and send for sauce");
-	stringChan <- pizzaName
-	time.Sleep(time.Millisecond * 10)
-}
-
-func addSauce(stringChan chan string) {
-	pizza := <- stringChan
-	fmt.Println("Add sauce and send", pizza, "for toppings")
-	stringChan <- pizzaName
-	time.Sleep(time.Millisecond * 10)
-}
-
-func addTopping(stringChan chan string) {
-	pizza := <- stringChan
-	fmt.Println("Add toppings to", pizza, "and ship")
-	time.Sleep(time.Millisecond * 10)
 }

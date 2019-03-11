@@ -2,8 +2,11 @@
 learn golang from various sources
 
 # How to run
-`go run main.go`
+`go run *.go`
 
 or 
 
 `./learn-go`
+
+# How to build
+`go build`
