@@ -5,6 +5,7 @@ import (
 	"math"
 	"errors"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -34,7 +35,8 @@ func main() {
 	// incWithPointer(&i)
 	// fmt.Println(i)
 	
-	RegisterRoutes()
+	// RegisterRoutes()
+	goRoutine()
 }
 
 func helloWorld() {
@@ -136,4 +138,19 @@ func hi(writer http.ResponseWriter, req *http.Request) {
 
 func ping(writer http.ResponseWriter, req *http.Request) {
 	fmt.Fprintf(writer, "pong")
+}
+
+func goRoutine() {
+	for i := 0; i < 10; i++ {
+		go count(i)
+	}
+
+	time.Sleep(time.Millisecond * 11000)
+}
+
+func count(id int) {
+	for i := 0; i < 10; i++ {
+		fmt.Println(fmt.Sprintf("%v: %v", id, i))
+		time.Sleep(time.Millisecond * 1000)
+	}
 }
