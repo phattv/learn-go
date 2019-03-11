@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 	"time"
+	"strconv"
 )
 
 func main() {
@@ -36,7 +37,15 @@ func main() {
 	// fmt.Println(i)
 	
 	// RegisterRoutes()
-	goRoutine()
+	// goRoutine()
+
+	stringChannel := make(chan string)
+	for i:= 0; i  < 3; i ++ {
+		go makeDough(stringChannel)
+		go addSauce(stringChannel)
+		go addTopping(stringChannel)
+		time.Sleep(time.Millisecond * 5000)
+	}
 }
 
 func helloWorld() {
@@ -153,4 +162,28 @@ func count(id int) {
 		fmt.Println(fmt.Sprintf("%v: %v", id, i))
 		time.Sleep(time.Millisecond * 1000)
 	}
+}
+
+var pizzaNum = 0
+var pizzaName = ""
+
+func makeDough(stringChan chan string) {
+	pizzaNum++
+	pizzaName = "Pizza #" + strconv.Itoa(pizzaNum)
+	fmt.Println("Make dough for", pizzaName, "and send for sauce");
+	stringChan <- pizzaName
+	time.Sleep(time.Millisecond * 10)
+}
+
+func addSauce(stringChan chan string) {
+	pizza := <- stringChan
+	fmt.Println("Add sauce and send", pizza, "for toppings")
+	stringChan <- pizzaName
+	time.Sleep(time.Millisecond * 10)
+}
+
+func addTopping(stringChan chan string) {
+	pizza := <- stringChan
+	fmt.Println("Add toppings to", pizza, "and ship")
+	time.Sleep(time.Millisecond * 10)
 }
